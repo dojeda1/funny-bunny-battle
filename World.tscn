@@ -80,7 +80,6 @@ valign = 1
 margin_top = 36.0
 margin_right = 64.0
 margin_bottom = 68.0
-disabled = true
 texture_normal = ExtResource( 7 )
 texture_pressed = ExtResource( 5 )
 texture_hover = ExtResource( 5 )
@@ -115,3 +114,4 @@ valign = 1
 [connection signal="start_enemy" from="BattleArena/PlayerGroup" to="BattleArena/EnemyGroup" method="_on_PlayerGroup_start_enemy"]
 [connection signal="start_player" from="BattleArena/EnemyGroup" to="BattleArena/PlayerGroup" method="_on_EnemyGroup_start_player"]
 [connection signal="pressed" from="CanvasLayer/Abilities/Joke" to="BattleArena/PlayerGroup" method="_on_Joke_pressed"]
+[connection signal="pressed" from="CanvasLayer/Abilities/Trip" to="BattleArena/PlayerGroup" method="_on_Trip_pressed"]

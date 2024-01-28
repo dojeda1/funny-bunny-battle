@@ -9,11 +9,14 @@ onready var health_bar = $"%HealthBar"
 onready var focus = $"%Focus"
 onready var hurt_sfx = $"%Hurt"
 onready var die_sfx = $"%Die"
+onready var trip_sfx = $"%Trip"
+onready var bonk_sfx = $"%Bonk"
 onready var battle_arena = get_parent().get_parent()
 
 var health: int = 100
 var MAX_HEALTH = 100
 export var joke_power = 10
+export var trip_power = 10
 var is_dead = false
 
 # Called when the node enters the scene tree for the first time.
@@ -74,7 +77,11 @@ func joke():
 	ap.play("joke")
 	
 func trip():
+	trip_sfx.play()
 	ap.play("trip")
+	
+func play_bonk():
+	bonk_sfx.play()
 	
 func next_actor():
 	get_parent().next_actor()

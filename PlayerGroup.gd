@@ -58,16 +58,9 @@ func activate_action(action, target):
 	if action == "joke":
 		players[turn_index].joke()
 		enemy_group.enemies[target].damage(player.joke_power)
-#		next_actor()
-#	if battle_arena.player_turn:
-#		switch_focus(turn_index, turn_index - 1)
-#		show_abilities()
-#	else:
-#		_reset_focus()
-#		_reset_turns()
-#		emit_signal("start_enemy")
-
-
+	if action == "trip":
+		players[turn_index].trip()
+		enemy_group.enemies[target].damage(player.trip_power)
 
 func _on_EnemyGroup_start_player():
 	if players.size() > 0:
@@ -117,12 +110,18 @@ func player_turn():
 		print('DEAD')
 		next_actor()
 
+func _start_choosing():
+	can_select_target = true
+	enemy_group.enemies[0].get_focus()
+
 func _on_Joke_pressed():
 	active_ability = "joke"
 	abilities.hide()
 	_start_choosing()
 	pass # Replace with function body.
 
-func _start_choosing():
-	can_select_target = true
-	enemy_group.enemies[0].get_focus()
+func _on_Trip_pressed():
+	active_ability = "trip"
+	abilities.hide()
+	_start_choosing()
+	pass # Replace with function body.
