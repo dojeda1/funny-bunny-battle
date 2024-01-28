@@ -43,6 +43,8 @@ position = Vector2( 88, 104 )
 [node name="King4" parent="BattleArena/EnemyGroup" instance=ExtResource( 2 )]
 position = Vector2( 160, 104 )
 
+[node name="Graveyard" type="Node2D" parent="BattleArena"]
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="BattleArena"]
 stream = ExtResource( 9 )
 autoplay = true

@@ -17,12 +17,14 @@ onready var player_group = battle_arena.get_node("PlayerGroup")
 #onready var players = battle_arena.player_group.players
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	enemies = get_children()
+	reindex()
 #	for i in enemies.size():
 #		enemies[i].position = Vector2(0, i*64)
 #	show_choice()
 	pass # Replace with function body.
 
+func reindex():
+	enemies = get_children()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -59,7 +61,7 @@ func _ready():
 #		_reset_focus()
 #		show_choice()
 #	else:
-#		next_enemy()
+#		next_actor()
 
 func switch_focus(x, y):
 	enemies[x].get_focus()
@@ -81,7 +83,7 @@ func _reset_turns():
 #	_reset_focus()
 #	enemies[0].get_focus()
 
-func next_enemy():
+func next_actor():
 	if turn_index < enemies.size() - 1:
 		turn_index += 1
 #		switch_focus(index, index - 1)
@@ -96,10 +98,13 @@ func next_enemy():
 	pass # Replace with function body.
 	
 func enemy_turn():
-	if !enemies[turn_index].is_dead:
-		activate_action()
+	if player_group.players.size() > 0:
+		if !enemies[turn_index].is_dead:
+			activate_action()
+		else:
+			next_actor()
 	else:
-		next_enemy()
+		print("GAME OVER 2")
 
 func _on_PlayerGroup_start_enemy():
 	enemy_turn()
@@ -113,4 +118,4 @@ func activate_action():
 	var rand_player = rng.randi_range(0, battle_arena.player_group.players.size() - 1)
 	print("attack player ", rand_player)
 	player_group.players[rand_player].damage(enemy.joke_power)
-	next_enemy()
+#	next_actor()

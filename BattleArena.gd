@@ -7,6 +7,7 @@ extends Node2D
 var player_turn = true
 onready var player_group = $PlayerGroup
 onready var enemy_group = $EnemyGroup
+onready var graveyard = $Graveyard
 
 
 # Called when the node enters the scene tree for the first time.

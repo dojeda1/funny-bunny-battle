@@ -8,6 +8,7 @@ var players = []
 var turn_index : int = 0
 var focus_index: int = 0
 var active_ability = null
+var can_select_target = false
 
 onready var abilities = $"%Abilities"
 onready var battle_arena = get_parent()
@@ -17,17 +18,18 @@ signal start_enemy
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	players = get_children()
+	reindex()
 	players[turn_index].get_focus()
 	show_abilities()
 #	for i in enemies.size():
 #		enemies[i].position = Vector2(0, i*64)
 	pass # Replace with function body.
-
+func reindex():
+	players = get_children()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if !abilities.visible:
+	if !abilities.visible and battle_arena.player_turn and can_select_target:
 		if Input.is_action_just_pressed("ui_up"):
 			if enemy_group.focus_index > 0:
 				enemy_group.focus_index -= 1
@@ -50,25 +52,29 @@ func _process(delta):
 	pass
 	
 func activate_action(action, target):
+	can_select_target = false
 	enemy_group._reset_focus()
 	var player = players[turn_index]
 	if action == "joke":
 		players[turn_index].joke()
 		enemy_group.enemies[target].damage(player.joke_power)
-		next_player()
-	if battle_arena.player_turn:
-		switch_focus(turn_index, turn_index - 1)
-		show_abilities()
-	else:
-		_reset_focus()
-		_reset_turns()
-		emit_signal("start_enemy")
+#		next_actor()
+#	if battle_arena.player_turn:
+#		switch_focus(turn_index, turn_index - 1)
+#		show_abilities()
+#	else:
+#		_reset_focus()
+#		_reset_turns()
+#		emit_signal("start_enemy")
 
 
 
 func _on_EnemyGroup_start_player():
-	players[0].get_focus()
-	player_turn()
+	if players.size() > 0:
+		players[0].get_focus()
+		player_turn()
+	else:
+		print("GAME OVER")
 
 func show_abilities():
 	abilities.show()
@@ -86,26 +92,30 @@ func _reset_focus():
 func _reset_turns():
 	turn_index = 0
 
-func next_player():
-	print(turn_index, players.size() - 1)
+func next_actor():
+	print("Next Actor")
 	if turn_index < players.size() - 1:
 		turn_index += 1
 		focus_index = turn_index
 		switch_focus(focus_index, focus_index - 1)
+		show_abilities()
+		print('Player ', turn_index)
 	else:
 		battle_arena.player_turn = false
 		_reset_turns()
 		_reset_focus()
-		emit_signal("begin_enemy_turn")
+		emit_signal("start_enemy")
+		print('Begin Enemy Turn')
 #		switch_focus(index, players.size() - 1)
 	pass # Replace with function body.
 
 func player_turn():
+	print("Player Turn")
 	if !players[turn_index].is_dead:
 		show_abilities()
 	else:
 		print('DEAD')
-		next_player()
+		next_actor()
 
 func _on_Joke_pressed():
 	active_ability = "joke"
@@ -114,4 +124,5 @@ func _on_Joke_pressed():
 	pass # Replace with function body.
 
 func _start_choosing():
+	can_select_target = true
 	enemy_group.enemies[0].get_focus()
