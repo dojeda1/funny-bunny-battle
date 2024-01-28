@@ -41,6 +41,8 @@ position = Vector2( -136, 16 )
 
 [node name="Jester2" parent="BattleArena/PlayerGroup" instance=ExtResource( 1 )]
 position = Vector2( -96, 72 )
+joke_power = 10
+trip_power = 12
 
 [node name="Sprite" parent="BattleArena/PlayerGroup/Jester2" index="0"]
 texture = ExtResource( 13 )

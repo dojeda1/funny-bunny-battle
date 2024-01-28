@@ -123,6 +123,9 @@ tracks/1/keys = {
 
 [node name="King" type="KinematicBody2D"]
 script = ExtResource( 2 )
+health = 120
+MAX_HEALTH = 120
+resistance = "trip"
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )

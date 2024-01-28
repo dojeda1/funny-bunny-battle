@@ -126,6 +126,7 @@ script = ExtResource( 2 )
 health = 50
 MAX_HEALTH = 50
 joke_power = 5
+resistance = "joke"
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( -1, 1 )

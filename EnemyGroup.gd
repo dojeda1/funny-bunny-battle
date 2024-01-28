@@ -120,5 +120,5 @@ func activate_action():
 	rng.randomize()
 	var rand_player = rng.randi_range(0, battle_arena.player_group.players.size() - 1)
 	print("attack player ", rand_player)
-	player_group.players[rand_player].damage(enemy.joke_power)
+	player_group.players[rand_player].damage(enemy.joke_power, "joke")
 #	next_actor()

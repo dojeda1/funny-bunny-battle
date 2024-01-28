@@ -19,6 +19,7 @@ export var health: int = 100
 export var MAX_HEALTH = 100
 export var joke_power = 10
 export var trip_power = 10
+export var resistance: String = "none"
 var is_dead = false
 
 # Called when the node enters the scene tree for the first time.
@@ -40,7 +41,9 @@ func _update_health_bar():
 #	health_bar.value = (health/MAX_HEALTH) * 100
 	health_bar.value = health
 	
-func damage(value):
+func damage(value, type):
+	if type == resistance:
+		value -= 5
 	update_health(-value)
 	ap.play("hurt")
 	hurt_sfx.play()

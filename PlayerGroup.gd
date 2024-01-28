@@ -57,10 +57,10 @@ func activate_action(action, target):
 	var player = players[turn_index]
 	if action == "joke":
 		players[turn_index].joke()
-		enemy_group.enemies[target].damage(player.joke_power)
+		enemy_group.enemies[target].damage(player.joke_power, "joke")
 	if action == "trip":
 		players[turn_index].trip()
-		enemy_group.enemies[target].damage(player.trip_power)
+		enemy_group.enemies[target].damage(player.trip_power, "trip")
 
 func _on_EnemyGroup_start_player():
 	if players.size() > 0:

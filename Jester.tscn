@@ -154,6 +154,7 @@ tracks/1/keys = {
 
 [node name="Jester" type="KinematicBody2D"]
 script = ExtResource( 2 )
+joke_power = 12
 
 [node name="Sprite" type="Sprite" parent="."]
 unique_name_in_owner = true
