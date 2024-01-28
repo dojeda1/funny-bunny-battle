@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Jester.tscn" type="PackedScene" id=1]
 [ext_resource path="res://King.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://BattleArena.gd" type="Script" id=8]
 [ext_resource path="res://SFX/Music/global_game_jam_2024.wav" type="AudioStream" id=9]
 [ext_resource path="res://SFX/Music/global_game_jam_2024_victory_stinger.wav" type="AudioStream" id=10]
+[ext_resource path="res://Guard.tscn" type="PackedScene" id=11]
 
 [node name="World" type="Node2D"]
 
@@ -29,26 +30,17 @@ position = Vector2( -168, 24 )
 [node name="Jester2" parent="BattleArena/PlayerGroup" instance=ExtResource( 1 )]
 position = Vector2( -120, 72 )
 
-[node name="Jester3" parent="BattleArena/PlayerGroup" instance=ExtResource( 1 )]
-position = Vector2( -176, 96 )
-
-[node name="Jester4" parent="BattleArena/PlayerGroup" instance=ExtResource( 1 )]
-position = Vector2( -104, 112 )
-
-[node name="Jester5" parent="BattleArena/PlayerGroup" instance=ExtResource( 1 )]
-position = Vector2( -48, 80 )
-
 [node name="EnemyGroup" type="Node2D" parent="BattleArena"]
 script = ExtResource( 3 )
 
 [node name="King" parent="BattleArena/EnemyGroup" instance=ExtResource( 2 )]
-position = Vector2( 88, -24 )
+position = Vector2( 104, 8 )
 
-[node name="King2" parent="BattleArena/EnemyGroup" instance=ExtResource( 2 )]
-position = Vector2( 120, 40 )
+[node name="Guard" parent="BattleArena/EnemyGroup" instance=ExtResource( 11 )]
+position = Vector2( 40, 48 )
 
-[node name="King3" parent="BattleArena/EnemyGroup" instance=ExtResource( 2 )]
-position = Vector2( 88, 104 )
+[node name="Guard2" parent="BattleArena/EnemyGroup" instance=ExtResource( 11 )]
+position = Vector2( 200, 80 )
 
 [node name="Graveyard" type="Node2D" parent="BattleArena"]
 
