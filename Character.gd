@@ -13,7 +13,7 @@ onready var battle_arena = get_parent().get_parent()
 
 var health: int = 100
 var MAX_HEALTH = 100
-var joke_power = 20
+export var joke_power = 10
 var is_dead = false
 
 # Called when the node enters the scene tree for the first time.

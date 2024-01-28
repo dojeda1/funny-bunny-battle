@@ -113,8 +113,8 @@ func _on_PlayerGroup_start_enemy():
 func activate_action():
 	var enemy = enemies[turn_index]
 	enemy.joke()
-	randomize()
 	var rng = RandomNumberGenerator.new()
+	rng.randomize()
 	var rand_player = rng.randi_range(0, battle_arena.player_group.players.size() - 1)
 	print("attack player ", rand_player)
 	player_group.players[rand_player].damage(enemy.joke_power)
