@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://VFX/jester-Sheet.png" type="Texture" id=1]
 [ext_resource path="res://Character.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://SFX/Sound/hearty_laugh_3.wav" type="AudioStream" id=7]
 [ext_resource path="res://SFX/Sound/slide.wav" type="AudioStream" id=8]
 [ext_resource path="res://SFX/Sound/bonk.wav" type="AudioStream" id=9]
+[ext_resource path="res://SFX/Sound/cymbal_1.wav" type="AudioStream" id=10]
 
 [sub_resource type="CapsuleShape2D" id=1]
 
@@ -201,7 +202,7 @@ stream = ExtResource( 7 )
 
 [node name="Joke" type="AudioStreamPlayer2D" parent="SFX"]
 unique_name_in_owner = true
-stream = ExtResource( 7 )
+stream = ExtResource( 10 )
 
 [node name="Trip" type="AudioStreamPlayer2D" parent="SFX"]
 unique_name_in_owner = true

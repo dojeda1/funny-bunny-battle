@@ -9,12 +9,13 @@ onready var health_bar = $"%HealthBar"
 onready var focus = $"%Focus"
 onready var hurt_sfx = $"%Hurt"
 onready var die_sfx = $"%Die"
+onready var joke_sfx = $"%Joke"
 onready var trip_sfx = $"%Trip"
 onready var bonk_sfx = $"%Bonk"
 onready var battle_arena = get_parent().get_parent()
 
-var health: int = 100
-var MAX_HEALTH = 100
+export var health: int = 100
+export var MAX_HEALTH = 100
 export var joke_power = 10
 export var trip_power = 10
 var is_dead = false
@@ -74,6 +75,7 @@ func lose_focus():
 	focus.hide()
 	
 func joke():
+	joke_sfx.play()
 	ap.play("joke")
 	
 func trip():
