@@ -7,6 +7,8 @@ extends KinematicBody2D
 onready var ap = $"%AnimationPlayer"
 onready var health_bar = $"%HealthBar"
 onready var focus = $"%Focus"
+onready var hurt_sfx = $"%Hurt"
+onready var die_sfx = $"%Die"
 
 var health: int = 100
 var MAX_HEALTH = 100
@@ -33,6 +35,7 @@ func _update_health_bar():
 func damage(value):
 	update_health(-value)
 	ap.play("hurt")
+	hurt_sfx.play()
 
 func die():
 	is_dead = true
@@ -43,15 +46,25 @@ func die():
 func end_hurt():
 	if is_dead:
 		ap.play("die")
+		die_sfx.play()
 		health_bar.hide()
 	else:
 		ap.play("idle")
+		
+func end_move():
+	ap.play("idle")
 	
 func get_focus():
 	focus.show()
 	
 func lose_focus():
 	focus.hide()
+	
+func joke():
+	ap.play("joke")
+	
+func trip():
+	ap.play("trip")
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
