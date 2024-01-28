@@ -41,7 +41,7 @@ position = Vector2( -136, 16 )
 
 [node name="Jester2" parent="BattleArena/PlayerGroup" instance=ExtResource( 1 )]
 position = Vector2( -96, 72 )
-joke_power = 10
+joke_power = 8
 trip_power = 12
 
 [node name="Sprite" parent="BattleArena/PlayerGroup/Jester2" index="0"]
@@ -74,14 +74,37 @@ one_shot = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
+[node name="Defend" type="TextureButton" parent="CanvasLayer"]
+visible = false
+margin_left = 896.0
+margin_top = 508.0
+margin_right = 960.0
+margin_bottom = 540.0
+disabled = true
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 5 )
+texture_hover = ExtResource( 5 )
+texture_disabled = ExtResource( 6 )
+texture_focused = ExtResource( 5 )
+
+[node name="Label" type="Label" parent="CanvasLayer/Defend"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 14 )
+text = "Defend"
+align = 1
+valign = 1
+
 [node name="Abilities" type="VBoxContainer" parent="CanvasLayer"]
 unique_name_in_owner = true
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -64.0
-margin_top = -104.0
+margin_left = -80.0
+margin_top = -84.0
+margin_right = -16.0
+margin_bottom = -16.0
 
 [node name="Joke" type="TextureButton" parent="CanvasLayer/Abilities"]
 margin_right = 64.0
@@ -118,25 +141,6 @@ text = "Trip"
 align = 1
 valign = 1
 
-[node name="Defend" type="TextureButton" parent="CanvasLayer/Abilities"]
-margin_top = 72.0
-margin_right = 64.0
-margin_bottom = 104.0
-disabled = true
-texture_normal = ExtResource( 7 )
-texture_pressed = ExtResource( 5 )
-texture_hover = ExtResource( 5 )
-texture_disabled = ExtResource( 6 )
-texture_focused = ExtResource( 5 )
-
-[node name="Label" type="Label" parent="CanvasLayer/Abilities/Defend"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-custom_fonts/font = ExtResource( 14 )
-text = "Defend"
-align = 1
-valign = 1
-
 [node name="EndGameLabel" type="Label" parent="CanvasLayer"]
 unique_name_in_owner = true
 anchor_left = 0.5
@@ -144,9 +148,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -150.0
-margin_top = -21.0
+margin_top = -78.0
 margin_right = 150.0
-margin_bottom = 21.0
+margin_bottom = -36.0
 custom_fonts/font = SubResource( 1 )
 text = "Funny Bunny!"
 align = 1
@@ -154,9 +158,9 @@ align = 1
 [node name="Replay" type="TextureButton" parent="CanvasLayer"]
 unique_name_in_owner = true
 margin_left = 448.0
-margin_top = 296.0
+margin_top = 239.0
 margin_right = 512.0
-margin_bottom = 328.0
+margin_bottom = 271.0
 texture_normal = ExtResource( 7 )
 texture_pressed = ExtResource( 5 )
 texture_hover = ExtResource( 5 )

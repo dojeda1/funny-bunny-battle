@@ -26,7 +26,7 @@ func _ready():
 func game_win():
 	$BattleTheme.stop()
 	$EndMusicTimer.start()
-	end_game_label.text = "Funny Bunny!"
+	end_game_label.text = "Free Funny Bunny!"
 
 func game_lose():
 	end_game_label.text = "To The Dungeon!"

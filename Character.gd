@@ -43,7 +43,7 @@ func _update_health_bar():
 	
 func damage(value, type):
 	if type == resistance:
-		value -= 5
+		value -= 6
 	update_health(-value)
 	ap.play("hurt")
 	hurt_sfx.play()
