@@ -110,6 +110,6 @@ text = "Defend"
 align = 1
 valign = 1
 
-[connection signal="next_enemy" from="BattleArena/PlayerGroup" to="BattleArena/EnemyGroup" method="_on_PlayerGroup_next_enemy"]
-[connection signal="next_player" from="BattleArena/EnemyGroup" to="BattleArena/PlayerGroup" method="_on_EnemyGroup_next_player"]
-[connection signal="pressed" from="CanvasLayer/Abilities/Joke" to="BattleArena/EnemyGroup" method="_on_Joke_pressed"]
+[connection signal="start_enemy" from="BattleArena/PlayerGroup" to="BattleArena/EnemyGroup" method="_on_PlayerGroup_start_enemy"]
+[connection signal="start_player" from="BattleArena/EnemyGroup" to="BattleArena/PlayerGroup" method="_on_EnemyGroup_start_player"]
+[connection signal="pressed" from="CanvasLayer/Abilities/Joke" to="BattleArena/PlayerGroup" method="_on_Joke_pressed"]
