@@ -1,9 +1,56 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://VFX/jester-Sheet.png" type="Texture" id=1]
-[ext_resource path="res://Jester.gd" type="Script" id=2]
+[ext_resource path="res://Character.gd" type="Script" id=2]
+[ext_resource path="res://VFX/bar-fill.png" type="Texture" id=3]
+[ext_resource path="res://VFX/bar-container.png" type="Texture" id=4]
+[ext_resource path="res://VFX/hand.png" type="Texture" id=5]
 
 [sub_resource type="CapsuleShape2D" id=1]
+
+[sub_resource type="Animation" id=4]
+resource_name = "die"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 10 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "hurt"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 8, 9, 8, 9 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "end_hurt"
+} ]
+}
 
 [sub_resource type="Animation" id=2]
 resource_name = "idle"
@@ -25,15 +72,35 @@ tracks/0/keys = {
 [node name="King" type="KinematicBody2D"]
 script = ExtResource( 2 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
-
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( -1, 1 )
 texture = ExtResource( 1 )
-hframes = 2
-frame = 1
+hframes = 11
+frame = 8
+
+[node name="Focus" type="Sprite" parent="."]
+unique_name_in_owner = true
+visible = false
+position = Vector2( -32, 0 )
+texture = ExtResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
+anims/die = SubResource( 4 )
+anims/hurt = SubResource( 3 )
 anims/idle = SubResource( 2 )
+
+[node name="HealthBar" type="TextureProgress" parent="."]
+unique_name_in_owner = true
+margin_left = -16.0
+margin_top = -32.0
+margin_right = 16.0
+margin_bottom = -26.0
+rect_pivot_offset = Vector2( -488, -72 )
+value = 50.0
+texture_under = ExtResource( 4 )
+texture_progress = ExtResource( 3 )
+texture_progress_offset = Vector2( 1, 1 )
