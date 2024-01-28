@@ -12,6 +12,7 @@ onready var die_sfx = $"%Die"
 onready var joke_sfx = $"%Joke"
 onready var trip_sfx = $"%Trip"
 onready var bonk_sfx = $"%Bonk"
+onready var text_bubble = $"%TextBubble"
 onready var battle_arena = get_parent().get_parent()
 
 export var health: int = 100
@@ -22,6 +23,7 @@ var is_dead = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	text_bubble.hide()
 	health_bar.max_value = MAX_HEALTH
 	_update_health_bar()
 	ap.play("idle")
@@ -67,6 +69,7 @@ func end_hurt():
 func end_move():
 	next_actor()
 	ap.play("idle")
+	text_bubble.hide()
 	
 func get_focus():
 	focus.show()
@@ -77,6 +80,7 @@ func lose_focus():
 func joke():
 	joke_sfx.play()
 	ap.play("joke")
+	text_bubble.show()
 	
 func trip():
 	trip_sfx.play()
