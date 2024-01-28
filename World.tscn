@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Jester.tscn" type="PackedScene" id=1]
 [ext_resource path="res://King.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://VFX/button-normal.png" type="Texture" id=7]
 [ext_resource path="res://BattleArena.gd" type="Script" id=8]
 [ext_resource path="res://SFX/Music/global_game_jam_2024.wav" type="AudioStream" id=9]
+[ext_resource path="res://SFX/Music/global_game_jam_2024_victory_stinger.wav" type="AudioStream" id=10]
 
 [node name="World" type="Node2D"]
 
@@ -26,7 +27,16 @@ script = ExtResource( 4 )
 position = Vector2( -168, 24 )
 
 [node name="Jester2" parent="BattleArena/PlayerGroup" instance=ExtResource( 1 )]
-position = Vector2( -128, 80 )
+position = Vector2( -120, 72 )
+
+[node name="Jester3" parent="BattleArena/PlayerGroup" instance=ExtResource( 1 )]
+position = Vector2( -176, 96 )
+
+[node name="Jester4" parent="BattleArena/PlayerGroup" instance=ExtResource( 1 )]
+position = Vector2( -104, 112 )
+
+[node name="Jester5" parent="BattleArena/PlayerGroup" instance=ExtResource( 1 )]
+position = Vector2( -48, 80 )
 
 [node name="EnemyGroup" type="Node2D" parent="BattleArena"]
 script = ExtResource( 3 )
@@ -40,14 +50,18 @@ position = Vector2( 120, 40 )
 [node name="King3" parent="BattleArena/EnemyGroup" instance=ExtResource( 2 )]
 position = Vector2( 88, 104 )
 
-[node name="King4" parent="BattleArena/EnemyGroup" instance=ExtResource( 2 )]
-position = Vector2( 160, 104 )
-
 [node name="Graveyard" type="Node2D" parent="BattleArena"]
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="BattleArena"]
+[node name="BattleTheme" type="AudioStreamPlayer" parent="BattleArena"]
 stream = ExtResource( 9 )
 autoplay = true
+
+[node name="VictoryTheme" type="AudioStreamPlayer" parent="BattleArena"]
+stream = ExtResource( 10 )
+volume_db = 10.0
+
+[node name="EndMusicTimer" type="Timer" parent="BattleArena"]
+one_shot = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -111,7 +125,21 @@ text = "Defend"
 align = 1
 valign = 1
 
+[node name="EndGameLabel" type="Label" parent="CanvasLayer"]
+unique_name_in_owner = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -100.0
+margin_top = -7.0
+margin_right = 100.0
+margin_bottom = 7.0
+text = "FUNNY BUNNY!"
+align = 1
+
 [connection signal="start_enemy" from="BattleArena/PlayerGroup" to="BattleArena/EnemyGroup" method="_on_PlayerGroup_start_enemy"]
 [connection signal="start_player" from="BattleArena/EnemyGroup" to="BattleArena/PlayerGroup" method="_on_EnemyGroup_start_player"]
+[connection signal="timeout" from="BattleArena/EndMusicTimer" to="BattleArena" method="_on_EndMusicTimer_timeout"]
 [connection signal="pressed" from="CanvasLayer/Abilities/Joke" to="BattleArena/PlayerGroup" method="_on_Joke_pressed"]
 [connection signal="pressed" from="CanvasLayer/Abilities/Trip" to="BattleArena/PlayerGroup" method="_on_Trip_pressed"]

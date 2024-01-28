@@ -5,7 +5,7 @@
 [ext_resource path="res://VFX/bar-fill.png" type="Texture" id=3]
 [ext_resource path="res://VFX/hand.png" type="Texture" id=4]
 [ext_resource path="res://VFX/bar-container.png" type="Texture" id=5]
-[ext_resource path="res://SFX/Sound/small_laugh_1.wav" type="AudioStream" id=6]
+[ext_resource path="res://SFX/Sound/squeak.wav" type="AudioStream" id=6]
 [ext_resource path="res://SFX/Sound/hearty_laugh_3.wav" type="AudioStream" id=7]
 [ext_resource path="res://SFX/Sound/slide.wav" type="AudioStream" id=8]
 [ext_resource path="res://SFX/Sound/bonk.wav" type="AudioStream" id=9]
@@ -194,7 +194,6 @@ texture_progress_offset = Vector2( 1, 1 )
 [node name="Hurt" type="AudioStreamPlayer2D" parent="SFX"]
 unique_name_in_owner = true
 stream = ExtResource( 6 )
-volume_db = 10.0
 
 [node name="Die" type="AudioStreamPlayer2D" parent="SFX"]
 unique_name_in_owner = true

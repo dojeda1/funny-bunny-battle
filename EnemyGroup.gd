@@ -99,12 +99,15 @@ func next_actor():
 	
 func enemy_turn():
 	if player_group.players.size() > 0:
-		if !enemies[turn_index].is_dead:
-			activate_action()
+		if enemies.size() > 0:
+			if !enemies[turn_index].is_dead:
+				activate_action()
+			else:
+				next_actor()
 		else:
-			next_actor()
+			battle_arena.game_win()
 	else:
-		print("GAME OVER 2")
+		battle_arena.game_lose()
 
 func _on_PlayerGroup_start_enemy():
 	enemy_turn()

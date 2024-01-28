@@ -67,7 +67,7 @@ func _on_EnemyGroup_start_player():
 		players[0].get_focus()
 		player_turn()
 	else:
-		print("GAME OVER")
+		battle_arena.game_lose()
 
 func show_abilities():
 	abilities.show()
@@ -104,15 +104,21 @@ func next_actor():
 
 func player_turn():
 	print("Player Turn")
-	if !players[turn_index].is_dead:
-		show_abilities()
+	if enemy_group.enemies.size() > 0:
+		if !players[turn_index].is_dead:
+			show_abilities()
+		else:
+			print('DEAD')
+			next_actor()
 	else:
-		print('DEAD')
-		next_actor()
+		battle_arena.game_win()
 
 func _start_choosing():
-	can_select_target = true
-	enemy_group.enemies[0].get_focus()
+	if enemy_group.enemies.size() > 0:
+		can_select_target = true
+		enemy_group.enemies[0].get_focus()
+	else:
+		battle_arena.game_win()
 
 func _on_Joke_pressed():
 	active_ability = "joke"
